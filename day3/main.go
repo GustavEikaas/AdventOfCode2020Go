@@ -26,17 +26,15 @@ func main() {
 func runSlope(right int, down int)int {
 	input,_ := ioutil.ReadFile("input.txt")
 	var inputMap = strings.Split(string(input), "\n")
-	treeCount := 0
-	col := 0
+	var treeCount,col int
+
 
 	for i :=0; i < len(inputMap)-1; i+= down {
 		if []rune(inputMap[i])[col] == '#' {
 				treeCount++
 			}
 			col += right
-			if col > 30 {
-				col -= 31
-			}
+			col %= len(inputMap[i])
 	}
 	return treeCount
 	}
