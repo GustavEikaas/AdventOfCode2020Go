@@ -1,2 +1,2 @@
 ﻿# AdventOfCode2020Go
-Adventofcode.com solved in golang
+Adventofcode.com daily challenges solved in golang
