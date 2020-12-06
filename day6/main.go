@@ -14,37 +14,37 @@ func main(){
 	input,_ := ioutil.ReadFile("input.txt")
 	answers := strings.Split(string(input),"\n\n")
 	re := regexp.MustCompile(`\r?\n`)
-
+	part1Answers := make([]string,len(answers))
 	for i:=0; i<len(answers); i++{
-		answers[i] = re.ReplaceAllString(answers[i], "")
+		part1Answers[i] = re.ReplaceAllString(answers[i], "")
 	}
 
-	var numAnswers,uniqueChars int
-	for i:=0; i<len(answers); i++{
+	var part1,uniqueChars int
+	for i:=0; i<len(part1Answers); i++{
 		unique := make([]uint8,26)
-		for j:=0; j<len(answers[i]); j++{
-			char := answers[i][j]
+		for j:=0; j<len(part1Answers[i]); j++{
+			char := part1Answers[i][j]
 			if!(existsInSlice(char,unique)){
 				unique = append(unique, char)
 				uniqueChars++
 			}
 		}
-		numAnswers += uniqueChars
+		part1 += uniqueChars
 		uniqueChars = 0
 		unique = nil
 	}
-	fmt.Println(numAnswers)
+	fmt.Println(part1)
 
 	/*
 	Part 2
 	 */
-	input,_ = ioutil.ReadFile("input.txt")
-	answers = strings.Split(string(input),"\n\n")
-
 	var part2 int
 	for i:=0; i<len(answers); i++{
 		var repeat int
 		indvAnswer := strings.Split(answers[i],"\n")
+		if indvAnswer[len(indvAnswer)-1] == "" {
+			indvAnswer = indvAnswer[0:(len(indvAnswer)-2)]
+		}
 
 		for j:=0; j<len(indvAnswer[0]); j++{
 			char := string([]rune(indvAnswer[0])[j])
