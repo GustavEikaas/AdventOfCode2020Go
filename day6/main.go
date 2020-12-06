@@ -18,7 +18,6 @@ func main(){
 	for i:=0; i<len(answers); i++{
 		part1Answers[i] = re.ReplaceAllString(answers[i], "")
 	}
-
 	var part1,uniqueChars int
 	for i:=0; i<len(part1Answers); i++{
 		unique := make([]uint8,26)
@@ -38,17 +37,15 @@ func main(){
 	/*
 	Part 2
 	 */
-	var part2 int
+	var part2,repeat int
 	for i:=0; i<len(answers); i++{
-		var repeat int
 		indvAnswer := strings.Split(answers[i],"\n")
-		if indvAnswer[len(indvAnswer)-1] == "" {
-			indvAnswer = indvAnswer[0:(len(indvAnswer)-2)]
+		lastLine := len(indvAnswer)-1
+		if indvAnswer[lastLine] == "" {
+			indvAnswer = indvAnswer[0:lastLine-1]
 		}
-
 		for j:=0; j<len(indvAnswer[0]); j++{
 			char := string([]rune(indvAnswer[0])[j])
-
 			for k:=0; k<len(indvAnswer); k++{
 				if strings.Contains(indvAnswer[k],char){
 					repeat++
